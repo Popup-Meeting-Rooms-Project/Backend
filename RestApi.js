@@ -1,18 +1,62 @@
-const express = require('express')
-const app = express()
 
-//app.use(express.json());
+const express = require('express');
+const app = express();
+
+module.exports = function(repository) {  
+    
+    app.get('/status', (req, res) => {
+
+        clients = repository.getAll();
+        res.json({clients: clients.length})
+    })
+
+    app.get('/register', (req, res) => {
+
+        const headers = {
+            'Content-Type': 'text/event-stream',
+            'Connection': 'keep-alive',
+            'Cache-Control': 'no-cache'
+        };
+
+        res.writeHead(200, headers);
+        
+        const clientId = Date.now();
+        
+        const newClient = {
+            id: clientId,
+            res
+        };
+        
+        repository.add(newClient);
+        
+        req.on('close', () => {
+            console.log(`${clientId} Connection closed`);
+            
+            repository.remove(clientId)
+        });
+        
+    
+    })
+    
+    app.listen(8181, () => {
+        console.log("API listening on port 8181 localHost")
+    }) 
+}
 
 
-app.get('/register', (req,res) => {
-    //method register
+/*
+    MICHEL DORSAZ
 
-    //respond 200 and keep connection
-    res.send("Registering client")
-})
+    Is client ID secure enough ? 
+    -> maybe should use another thing than Date.now()
 
-app.listen(8080, () => {
-    console.log("Server listening on port 8080 localHost")
-})
+    Used sources (modified):
+    //https://www.digitalocean.com/community/tutorials/nodejs-server-sent-events-build-realtime-app
+*/
+
+
+
+
+
 
 
