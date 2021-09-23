@@ -1,0 +1,21 @@
+❍ ❑ ■ ⬜ □ ☐ ▪ ▫ – — ≡ → › ✔ ✓ ☑ ✘ x X
+
+
+TO DO :
+
+☐ Data filter to store and send only 
+relevant data (on mqtt.js or api.js ?)
+
+☐ Fake DB && db.js -> db.CRUD()
+
+☐ get /statistic && stat.js
+
+☐ mqtt connection 
+
+
+TO DO ? :
+
+❍ get /status && /status/:roomId
+
+❍ Sensors[] && latest data 
+&& timeStamp (for filter)

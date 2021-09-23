@@ -1,0 +1,5 @@
+
+How the Broker will communicate with the server ?
+    -> api request ?
+    -> sse connection ?
+    -> installed on server ? 
