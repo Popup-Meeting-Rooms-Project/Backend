@@ -1,15 +1,20 @@
-const { api_config } = require('../config');
+const { apiConfig } = require('../config');
 const express = require('express');
-const { sse_registration } = require('./sse'); 
+const { sseRegistration: sse } = require('./sse'); 
 
 const app = express();
 
 
-app.get('/register', sse_registration.register);
+app.get('/register', sse.register);
 
+/*
+app.get('/statistics', sse.register);
 
-app.listen(api_config.port, () => {
-    console.log('API listening on port ' + api_config.port + ' localHost')
+app.get('/statistics/:roomId', sse.register);
+*/
+
+app.listen(apiConfig.port, () => {
+    console.log('API listening on port ' + apiConfig.port + ' localHost')
 }) 
 
 

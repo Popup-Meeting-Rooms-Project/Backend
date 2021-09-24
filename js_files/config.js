@@ -1,25 +1,22 @@
-module.exports = {
+const apiConfig = {
 
-    api_config : {
+    port: 8080
 
-        port: 8080
-    
+}
+
+const mqttClientConfig = {
+
+    url : "mqtt://test.mosquitto.org",
+    port : 8081,
+    options : {
+        clientId:"mqttjs01",
+        username:"steve",
+        password:"password",
+        clean:true
     },
-
-    broker_config : {
-
-        url : "mqtt://test.mosquitto.org",
-        port : 8081,
-        options : {
-            clientId:"mqttjs01",
-            username:"steve",
-            password:"password",
-            clean:true
-        },
-        topic : "/softala/test"
-    
-    },
+    topic : "/softala/test"
 }
 
 
+module.exports = {apiConfig, mqttClientConfig}
 

@@ -7,20 +7,12 @@ TO DO :
 
 ☐ DB connection
 
-☐ Update new client data
+☐ /statistics
 
+☐ Error gestion (+try/catch)
 
 
 TO DO ? :
 
-❍ Multiple topic registration
-
-❍ Data filter to store and send only 
-relevant data (on mqtt.js or api.js ?)
-
 ❍ More secure client_Id than Date.now()
-
-❍ get /statistic && stat.js
-
-❍ get /status && /status/:roomId
 
