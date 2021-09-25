@@ -52,9 +52,9 @@ mqttClient.subscribe(mqttClientConfig.topic);
 
 mqttClient.on('message', function(topic, message, packet){
 
-    db.insert(topic, message);
-
     sse.newEvent(message);
+
+    db.insert(message);
 
 });
 

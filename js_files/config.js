@@ -17,6 +17,13 @@ const mqttClientConfig = {
     topic : "/softala/test"
 }
 
+const dbConfig = {
+    host: 'mydb.com', 
+    user:'myUser', 
+    password: 'myPassword',
+    connectionLimit: 5
+}
+
 
 module.exports = {apiConfig, mqttClientConfig}
 
