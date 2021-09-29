@@ -1,4 +1,4 @@
-## Create Tables
+-- Create Tables
 CREATE TABLE display_user 
 (
 id bigint auto_increment primary key NOT NULL, 
@@ -42,7 +42,7 @@ end_time timestamp NOT NULL,
 CONSTRAINT FK_AVAILABILITY_TRACKER_ROOM FOREIGN KEY (room_id) REFERENCES room(id)
 );
 
-## Insert Data
+-- Insert Data
 INSERT INTO display_user (name, login, password, role) VALUES
 ('User1', 'User1@mail', '1234', 'User'),
 ('User2', 'User2@mail', '1234', 'User'),
@@ -72,5 +72,5 @@ INSERT INTO sensor (room_id, sensor_json_data) VALUES
 '))
 ;
 
-## Query to extract Data from Json Doc
+-- Query to extract Data from Json Doc
 SELECT JSON_EXTRACT(sensor_json_data, '$.occupancy') FROM sensor;
