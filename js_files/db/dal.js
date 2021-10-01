@@ -25,15 +25,15 @@ const dbWrite = {
       conn = await pool.getConnection();
 
 
-      /*
+      
       const res = await conn.query(
-          "INSERT INTO Data value (?, ?, ?)", 
+          "INSERT INTO sensor value (?, ?, ?)", 
           [
             message["id"], 
             message["occupancy"],
             message["timestamp"]
         ]);
-        */
+        
 
       console.log("DB : written " + message);
 
@@ -47,7 +47,7 @@ const dbWrite = {
   }
 }
 
-    const dbRead = {
+const dbRead = {
       getAll: async function () {
 
         let conn;
@@ -62,6 +62,6 @@ const dbWrite = {
           if (conn) return conn.end();
         }
       }
-    }
+}
 
-    module.exports = { dbWrite, dbRead }
+module.exports = { dbWrite, dbRead }

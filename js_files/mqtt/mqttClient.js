@@ -1,5 +1,5 @@
 const { sseEvents: sse } = require('../sse/sse'); 
-//const { dbWrite: db } = require('../db/dal');
+const { dbWrite: db } = require('../db/dal');
 const { mqttClientConfig } = require('../config');
 
 const  mqtt = require('mqtt'); 
@@ -58,7 +58,7 @@ mqttClient.on('message', function(topic, message, packet){
 
     sse.newEvent(message);
 
-    //db.insert(message);
+    db.insert(message);
 
 });
 

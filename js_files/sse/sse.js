@@ -1,3 +1,5 @@
+const { mqttClientConfig } = require('../config')
+
 const clients = [];
 const data = [];
 
@@ -18,7 +20,7 @@ const sseRegistration = {
 
         const newClient = {
             id: clientId,
-            topic: "topic",
+            topic: mqttClientConfig.topic,
             response
         };
         
@@ -62,20 +64,16 @@ const update = function(data, message){
     console.log("SSE : updating event")
 
     /*
-    let msg = JSON.parse(message);
-    
-    for (const d in data) {
-        let entry = JSON.parse(data[d]);
-        
-        if (entry["id"] === msg["id"]) {            
-            entry["occupancy"] = msg["occupancy"];
-            entry["timestamp"] = msg["timestamp"];
-            return;     
+        const something = db.readRoom();
+        {
+            building_floor
+            room_number
         }
-    }
-
-    
-
+        
+        something.building_floor
+        something.room_number
+        message.room_availability
+        message.timeStamp
     */
 
     data.push(message);
@@ -83,9 +81,7 @@ const update = function(data, message){
 
 const sendData = function(client){
 
-console.log("SSE : data sent : " + data)
-
-//client.response.write(`data: ${JSON.stringify(data)}\n\n`); 
+console.log("SSE : data sent : " + data);
 
 client.response.write("" + data);
 
