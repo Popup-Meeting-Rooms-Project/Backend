@@ -61,6 +61,7 @@ const update = function(data, message){
 
     console.log("SSE : updating event")
 
+    /*
     let msg = JSON.parse(message);
     
     for (const d in data) {
@@ -72,6 +73,10 @@ const update = function(data, message){
             return;     
         }
     }
+
+    
+
+    */
 
     data.push(message);
 }
