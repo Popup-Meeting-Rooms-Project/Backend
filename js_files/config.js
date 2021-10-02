@@ -6,12 +6,16 @@ const apiConfig = {
 
 }
 
+/*
+    url : "mqtt://128.214.253.119",
+    port : 8888,
+*/
 
 
 const mqttClientConfig = {
 
     url : "mqtt://test.mosquitto.org",
-    port : 8081,
+    port : 1883,
     options : {},
     topic : "/michel"
 }

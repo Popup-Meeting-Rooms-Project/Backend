@@ -16,7 +16,7 @@ const dbWrite = {
 
   insert: async function (message) {
 
-
+    const sensorData = JSON.parse(message);
 
     let conn;
 
@@ -24,14 +24,13 @@ const dbWrite = {
 
       conn = await pool.getConnection();
 
-
       
       const res = await conn.query(
-          "INSERT INTO sensor value (?, ?, ?)", 
+          "INSERT INTO availability_tracker values (?, ?, ?)", 
           [
-            message["id"], 
-            message["occupancy"],
-            message["timestamp"]
+            sensorData.id, 
+            sensorData.occupency,
+            sensorData.timestamp
         ]);
         
 
@@ -48,13 +47,18 @@ const dbWrite = {
 }
 
 const dbRead = {
-      getAll: async function () {
+      getAll: async function (sensorId) {
 
         let conn;
 
         try {
           conn = await pool.getConnection();
-          return await conn.query("SELECT * FROM Data");
+          return await conn.query(
+            "SELECT building_floor, room_number FROM room WHERE sensor_id = ?", 
+            [
+              sensorId
+            ]
+            );
 
         } catch (err) {
           console.log("Error : " + err)
