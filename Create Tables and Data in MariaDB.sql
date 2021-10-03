@@ -18,28 +18,24 @@ room_number int NOT NULL,
 building varchar(50) NOT NULL, 
 building_floor int NOT NULL, 
 max_number_people int NOT NULL, 
-room_available boolean NOT NULL, 
-sensor_id bigint NOT NULL,
-CONSTRAINT UQ_room_sensor_id UNIQUE (sensor_id)
+room_available boolean NOT NULL
 );
-
 
 CREATE TABLE sensor 
 (
 id bigint auto_increment primary key NOT NULL,
+sensor_id varchar NOT NULL,
 room_id bigint NOT NULL, 
-sensor_json_data JSON,
 CONSTRAINT FK_SENSOR_ROOM FOREIGN KEY (room_id) REFERENCES room(id),
-CHECK (JSON_VALID(sensor_json_data))
+CONSTRAINT UQ_sensor_id UNIQUE (sensor_id)
 );
 
-CREATE TABLE availability_tracker
+CREATE TABLE sensor_history_tracker
 (
 id bigint auto_increment primary key NOT NULL,
-room_id bigint NOT NULL,
-start_time timestamp NOT NULL,
-end_time timestamp NOT NULL,
+sensor_json_data JSON,
 CONSTRAINT FK_AVAILABILITY_TRACKER_ROOM FOREIGN KEY (room_id) REFERENCES room(id)
+CHECK (JSON_VALID(sensor_json_data))
 );
 
 -- Insert Data
@@ -51,26 +47,24 @@ INSERT INTO display_user (name, login, password, role) VALUES
 ;
 
 
-INSERT INTO room (room_number, building, building_floor, max_number_people, room_available, sensor_id) VALUES
-(1, 'Pasila', 1, 4, True, 12345),
-(2, 'Pasila', 2, 4, True, 12346),
-(1, 'Helsinki', 1, 4, True, 12347)
-;
-
-INSERT INTO availability_tracker (room_id, start_time, end_time) VALUES
-(1,'2021-07-22 12:12:12', '2021-07-22 12:18:33'),
-(2,'2021-07-22 12:12:12', '2021-07-22 12:18:33')
+INSERT INTO room (room_number, building, building_floor, max_number_people, room_available) VALUES
+(1, 'Pasila', 1, 4, True),
+(2, 'Pasila', 2, 4, True),
+(1, 'Helsinki', 1, 4, True)
 ;
 
 
-INSERT INTO sensor (room_id, sensor_json_data) VALUES
-(1, JSON_COMPACT('
+INSERT INTO sensor (sensor_id, room_id) VALUES
+(1, 1)
+;
+
+INSERT INTO sensor_history_tracker (sensor_json_data) VALUES 
+(JSON_COMPACT('
 {
       "id": "F4:A5:74:89:16:57",
 	  "occupancy": false
 }
-'))
-;
+'));
 
 -- Query to extract Data from Json Doc
 SELECT JSON_EXTRACT(sensor_json_data, '$.occupancy') FROM sensor;
