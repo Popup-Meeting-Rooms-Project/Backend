@@ -8,8 +8,8 @@
 		- [Run the application](#run-the-application)
 			- [Development](#development)
 			- [Production](#production)
-	- [API documentation](#api-documentation)
-		- [Endpoints](#endpoints)
+	- [API reference](#api-reference)
+		- [Latest room status](#latest-room-status)
 
 ## Running the application
 
@@ -28,6 +28,7 @@
 
 Configure `.env` file located in `path-to-directory`.
 
+	# Database variables
 	DB_HOST=your-database-host
 	DB_USER=your-database-user
 	DB_PASS=your-database-password
@@ -37,26 +38,30 @@ Configure `.env` file located in `path-to-directory`.
 
 Install dependencies for development enviroment
 
-	$ npm install
+	npm install
 
 ### Run the application
 
 #### Development
 
-Run the main application `app.js` located in project root
+Run the main application `.js` located in `path-to-directory`
 
-	$ node app.js
+	node .js
 
 #### Production
 
 Run as PM2 process
 
-	$ pm2 start app.js
+	pm2 start app.js
 
-## API documentation
+## API reference
 
-Mockup JSON file [placeholderdata.json](placeholderdata.json)
+Base URL
 
-### Endpoints
+`http://206.189.16.14/`
 
-Fetch mockup JSON from server endpoint `/json` 
+### Latest room status
+
+Fetch latest room updates with GET request
+
+`http://206.189.16.14/json`
