@@ -24,7 +24,7 @@ room_available boolean NOT NULL
 CREATE TABLE sensor 
 (
 id bigint auto_increment primary key NOT NULL,
-sensor_id varchar NOT NULL,
+sensor_id varchar(50) NOT NULL,
 room_id bigint NOT NULL, 
 CONSTRAINT FK_SENSOR_ROOM FOREIGN KEY (room_id) REFERENCES room(id),
 CONSTRAINT UQ_sensor_id UNIQUE (sensor_id)
@@ -34,7 +34,6 @@ CREATE TABLE sensor_history_tracker
 (
 id bigint auto_increment primary key NOT NULL,
 sensor_json_data JSON,
-CONSTRAINT FK_AVAILABILITY_TRACKER_ROOM FOREIGN KEY (room_id) REFERENCES room(id)
 CHECK (JSON_VALID(sensor_json_data))
 );
 
