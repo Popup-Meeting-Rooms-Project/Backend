@@ -63,20 +63,18 @@ const update = function(data, message){
 
     console.log("SSE : updating event")
 
-    /*
-        const something = db.readRoom();
-        {
-            building_floor
-            room_number
-        }
+    
+        const roomInfo = db.getRoomInfo(sensorId);
         
-        something.building_floor
-        something.room_number
-        message.room_availability
-        message.timeStamp
-    */
+        const object = {
+            building_floor: roomInfo.building_floor,
+            room_number: roomInfo.room_number,
+            room_availability: message.room_availability,
+            timeStamp: message.timeStamp
+        }
 
-    data.push(message);
+
+    data.push(object);
 }
 
 const sendData = function(client){
