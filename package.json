@@ -1,0 +1,29 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "helmet": "^4.6.0",
+    "mariadb": "^2.5.4",
+    "mqtt": "^4.2.8",
+    "pm2": "^5.1.2",
+    "ssh2": "^1.4.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Popup-Meeting-Rooms-Project/Backend.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Popup-Meeting-Rooms-Project/Backend/issues"
+  },
+  "homepage": "https://github.com/Popup-Meeting-Rooms-Project/Backend#readme"
+}
