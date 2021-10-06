@@ -54,7 +54,7 @@ INSERT INTO room (room_number, building, building_floor, max_number_people, room
 
 
 INSERT INTO sensor (sensor_id, room_id) VALUES
-(1, 1)
+("F4:A5:74:89:16:57", 1)
 ;
 
 INSERT INTO sensor_history_tracker (sensor_json_data) VALUES 
