@@ -14,7 +14,14 @@ const mqttClient = mqtt.connect(
  
 mqttClient.on("connect", function(){	
 
-    console.log("Connected to Broker");
+    console.log("Connected to Broker at URL " + mqttClientConfig.url);
+
+    const msg = {
+        id: "TE-ST-NB-01",
+        availability: true
+    }
+
+    mqttClient.publish(mqttClientConfig.topic, JSON.stringify(msg), {})
 
 })
 
@@ -28,6 +35,8 @@ mqttClient.subscribe(mqttClientConfig.topic);
 
 
 mqttClient.on('message', function(topic, message, packet){
+
+    console.log("Message received " + message)
 
     sse.newEvent(message);
 

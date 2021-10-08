@@ -9,6 +9,7 @@ const apiConfig = {
 /*
     url : "mqtt://128.214.253.119",
     port : 8888,
+    
 */
 
 
@@ -17,7 +18,7 @@ const mqttClientConfig = {
     url : "mqtt://test.mosquitto.org",
     port : 1883,
     options : {},
-    topic : "/michel"
+    topic : "hh-iot-mqtt/outTopic"
 }
 
 const dbConfig = {
