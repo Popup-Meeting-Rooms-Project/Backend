@@ -1,6 +1,6 @@
 const { sseEvents: sse } = require('../sse/sse'); 
 const { dbWrite: db } = require('../db/dal');
-const { mqttClientConfig } = require('../config');
+const { mqttClientConfig, logger } = require('../config');
 
 const  mqtt = require('mqtt'); 
 
@@ -14,19 +14,26 @@ const mqttClient = mqtt.connect(
  
 mqttClient.on("connect", function(){	
 
-    console.log("Connected to Broker at URL " + mqttClientConfig.url);
+    console.log("mqtt/mqttClient Connected to Broker at URL " + mqttClientConfig.url);
+    logger.info("mqtt/mqttClient Connected to Broker at URL " + mqttClientConfig.url);
 
-    const msg = {
-        id: "TE-ST-NB-01",
-        availability: true
-    }
+
+    const msg = { 
+
+        "sensor": "24:6F:28:9D:B9:14", 
+        
+        "detected": false 
+        
+        } 
 
     mqttClient.publish(mqttClientConfig.topic, JSON.stringify(msg), {})
 
 })
 
 mqttClient.on("error", function(error){ 
-    console.log("Broker error : " + error);
+    console.log("mqtt/mqttClient Broker error : " + error);
+    logger.fatal("mqtt/mqttClient Broker error : " + error);
+
     process.exit(1);
 })
 
@@ -35,8 +42,6 @@ mqttClient.subscribe(mqttClientConfig.topic);
 
 
 mqttClient.on('message', function(topic, message, packet){
-
-    console.log("Message received " + message)
 
     sse.newEvent(message);
 

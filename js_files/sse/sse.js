@@ -1,4 +1,4 @@
-const { mqttClientConfig } = require('../config')
+const { mqttClientConfig, logger } = require('../config')
 const { dbRead: db } = require('../db/dal');
 
 const clients = [];
@@ -27,7 +27,8 @@ const sseRegistration = {
 
         clients.push(newClient);
 
-        console.log(`Client ${clientId} : connection opened`);
+        console.log('sse/sse Connection with client ' + clientId);
+        logger.info('sse/sse Connection with client ' + clientId);
 
         request.on('close', () => {
 
@@ -40,7 +41,8 @@ const sseRegistration = {
                 }
             })()
 
-            console.log(`Client ${clientId} : connection closed`);
+            console.log('sse/sse Disconnection from client ' + clientId);
+            logger.info('sse/sse Disconnection from client ' + clientId);
 
         });
 
@@ -51,19 +53,17 @@ const sseEvents = {
 
     newEvent : function(message){
 
-        let sensorId = JSON.parse(message).id;
+        let msgJson = JSON.parse(message);
+        let sensorId = msgJson["sensor"];
 
         const roomInfo = db.getRoomInfo(sensorId);
         
         const data = {
             building_floor: roomInfo.building_floor,
             room_number: roomInfo.room_number,
-            room_availability: message.room_availability,
-            timeStamp: message.timeStamp
+            room_availability: msgJson["detected"],
+            timeStamp: Date.now()
         }
-
-
-        console.log("SSE sending : " + data.toString());
 
         clients.forEach(client => sendData(data, client));
         

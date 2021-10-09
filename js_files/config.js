@@ -1,4 +1,21 @@
 const credentials = require('dotenv').config()
+const winston = require('winston');
+
+const logLevels = {
+    fatal: 0,
+    error: 1,
+    warn: 2,
+    info: 3
+};
+  
+const logger = winston.createLogger({
+    levels: logLevels,
+    format: winston.format.json(),
+    transports: [
+        new winston.transports.File({ filename: 'logs/process.log' })
+    ]
+});
+
 
 const apiConfig = {
 
@@ -31,5 +48,5 @@ const dbConfig = {
 }
 
 
-module.exports = {apiConfig, mqttClientConfig, dbConfig}
+module.exports = {apiConfig, mqttClientConfig, dbConfig, logger}
 
