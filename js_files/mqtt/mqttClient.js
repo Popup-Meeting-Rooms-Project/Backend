@@ -32,7 +32,7 @@ mqttClient.on("connect", function(){
 
 mqttClient.on("error", function(error){ 
     console.log("mqtt/mqttClient Broker error : " + error);
-    logger.warning("mqtt/mqttClient Broker error : " + error);
+    logger.warn("mqtt/mqttClient Broker error : " + error);
 
 })
 

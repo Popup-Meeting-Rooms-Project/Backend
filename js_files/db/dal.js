@@ -6,11 +6,10 @@ const { dbConfig, logger } = require('../config');
 
 
 const pool = mariadb.createPool({
-  host: dbConfig.host,
-  port: dbConfig.port,
-  user: dbConfig.user,
-  password: dbConfig.password,
-  database: dbConfig.database,
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASS,
+  database: process.env.DB_NAME,
   connectionLimit: dbConfig.connectionLimit
 });
 
@@ -23,7 +22,7 @@ const dbWrite = {
     .then(conn => {
 
     conn.query(
-        "INSERT INTO sensor_history_tracker values (?)",
+        "INSERT INTO sensor_history_tracker (sensor_json_data) values  (?)",
         [message]);
 
     conn.release();

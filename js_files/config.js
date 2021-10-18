@@ -39,11 +39,10 @@ const mqttClientConfig = {
 }
 
 const dbConfig = {
-    host: credentials.DB_CONFIG, 
-    port:  3306,
-    user:credentials.DB_USER, 
-    password: credentials.DB_PASS,
-    database: credentials.DB_NAME,
+    host: process.env.DB_HOST, 
+    user: process.env.DB_USER, 
+    password: process.env.DB_PASS,
+    database: process.env.DB_NAME,
     connectionLimit: 5
 }
 

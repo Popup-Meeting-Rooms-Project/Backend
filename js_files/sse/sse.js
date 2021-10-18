@@ -74,7 +74,7 @@ const sseEvents = {
 
 const sendData = function(data, client){
 
-client.response.write(data);
+client.response.write(JSON.stringify(data));
 
 }
 
