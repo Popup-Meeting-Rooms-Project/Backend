@@ -44,7 +44,8 @@ const dbRead = {
     await pool.getConnection()
     .then(conn => {
 
-      conn.query( "SELECT r.building_floor, r.room_number FROM room r INNER JOIN sensor s ON r.id = s.room_id WHERE s.sensor_id = 'F4:A5:74:89:16:57'")
+      conn.query( "SELECT r.building_floor, r.room_number FROM room r INNER JOIN sensor s ON r.id = s.room_id WHERE s.sensor_id = '?'",
+      [sensorId])
 
       .then(function(result) {
         console.log(result[0]);
