@@ -6,11 +6,10 @@ const { dbConfig, logger } = require('../config');
 
 
 const pool = mariadb.createPool({
-  host: dbConfig.host,
-  port: dbConfig.port,
-  user: dbConfig.user,
-  password: dbConfig.password,
-  database: dbConfig.database,
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASS,
+  database: process.env.DB_NAME,
   connectionLimit: dbConfig.connectionLimit
 });
 
@@ -23,9 +22,8 @@ const dbWrite = {
     .then(conn => {
 
     conn.query(
-        "INSERT INTO sensor_history_tracker (sensor_json_data) values (?)",
-        [message])
-        
+        "INSERT INTO sensor_history_tracker (sensor_json_data) values  (?)",
+        [message]);
 
     conn.release();
     })
@@ -40,22 +38,30 @@ const dbWrite = {
 const dbRead = {
 
   getRoomInfo: async function (sensorId) {
-
+	const id = "'" + sensorId + "'"
+	console.log(sensorId)
     await pool.getConnection()
     .then(conn => {
 
-    const queryResult = conn.query(
-            "SELECT r.building_floor, r.room_number FROM room r INNER JOIN sensor s ON r.id = s.room_id WHERE s.sensor_id = ?", 
-            [sensorId]);
+    conn.query( "SELECT r.building_floor, r.room_number FROM room r INNER JOIN sensor s ON r.id = s.room_id WHERE s.sensor_id = 'F4:A5:74:89:16:57'")
 
-    const roomInfo = {
-      building_floor: queryResult.building_floor,
-      room_number: queryResult.room_number
-    }
+	.then(function(result) {
+	const queryResult=result[0]
+	const roomInfo = {
+       building_floor: queryResult.building_floor,
+       room_number: queryResult.room_number
+     }
+	  conn.release();
 
-    conn.release();
+     return roomInfo;
+    console.log(result[0]);}) // "initResolve"
+    //const roomInfo = {
+      //building_floor: queryResult.building_floor,
+      //room_number: queryResult.room_number
+    //}
+    //conn.release();
 
-    return roomInfo;
+    //return roomInfo;
 
     })
     .catch(err => {

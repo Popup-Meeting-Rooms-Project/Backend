@@ -1,3 +1,7 @@
+const express = require('express')
+const app = express()
+const port = 3001
+
 const fs = require('fs')
 
 fs.writeFile('logs/process.log', '*** SERVER STARTED ***\n', function(){

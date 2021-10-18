@@ -56,7 +56,7 @@ const sseEvents = {
         let msgJson = JSON.parse(message);
         let sensorId = msgJson["sensor"];
 
-        /*
+        
         const roomInfo = db.getRoomInfo(sensorId);
         
         const data = {
@@ -65,17 +65,7 @@ const sseEvents = {
             room_availability: msgJson["detected"],
             timeStamp: Date.now()
         }
-
-        
-        */
-
-        const data = {
-            building_floor: "This is a test",
-            room_number: "roomInfo.room_number",
-            room_availability: msgJson["detected"],
-            timeStamp: Date.now()
-        }
-
+	console.log(JSON.stringify(data));
         clients.forEach(client => sendData(data, client));
 
         
@@ -85,12 +75,7 @@ const sseEvents = {
 
 const sendData = function(data, client){
 
-console.log("data :")
-
-console.log(JSON.stringify(data));
-
 client.response.write(JSON.stringify(data));
-
 
 }
 
