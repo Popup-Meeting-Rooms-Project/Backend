@@ -20,9 +20,9 @@ mqttClient.on("connect", function(){
 
     const msg = { 
 
-        "sensor": "24:6F:28:9D:B9:14", 
+        "sensor": "F4:A5:74:89:16:57", 
         
-        "detected": false 
+        "detected": true 
         
         } 
 
@@ -32,7 +32,7 @@ mqttClient.on("connect", function(){
 
 mqttClient.on("error", function(error){ 
     console.log("mqtt/mqttClient Broker error : " + error);
-    logger.warning("mqtt/mqttClient Broker error : " + error);
+    logger.warn("mqtt/mqttClient Broker error : " + error);
 
 })
 
@@ -45,7 +45,7 @@ mqttClient.on('message', function(topic, message, packet){
     sse.newEvent(message);
 
     
-    db.insert(message);
+    //db.insert(message);
     
 
 });

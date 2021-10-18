@@ -23,8 +23,9 @@ const dbWrite = {
     .then(conn => {
 
     conn.query(
-        "INSERT INTO sensor_history_tracker values (?)",
-        [message]);
+        "INSERT INTO sensor_history_tracker (sensor_json_data) values (?)",
+        [message])
+        
 
     conn.release();
     })
