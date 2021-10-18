@@ -65,7 +65,7 @@ const sseEvents = {
             room_availability: msgJson["detected"],
             timeStamp: Date.now()
         }
-
+	console.log(JSON.stringify(data));
         clients.forEach(client => sendData(data, client));
         
     }
