@@ -57,17 +57,18 @@ const sseEvents = {
         let sensorId = msgJson["sensor"];
 
         
-        const roomInfo = db.getRoomInfo(sensorId);
-        
-        const data = {
-            building_floor: roomInfo.building_floor,
-            room_number: roomInfo.room_number,
-            room_availability: msgJson["detected"],
-            timeStamp: Date.now()
-        }
-	console.log(JSON.stringify(data));
-        clients.forEach(client => sendData(data, client));
+        db.getRoomInfo(sensorId, function(roomInfo){
 
+            const data = {
+                building_floor: roomInfo.building_floor,
+                room_number: roomInfo.room_number,
+                room_availability: msgJson["detected"],
+                timeStamp: Date.now()
+            }
+        console.log(JSON.stringify(data));
+            clients.forEach(client => sendData(data, client));
+
+        });
         
     }
 }  

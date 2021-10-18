@@ -37,31 +37,29 @@ const dbWrite = {
 
 const dbRead = {
 
-  getRoomInfo: async function (sensorId) {
-	const id = "'" + sensorId + "'"
-	console.log(sensorId)
+  getRoomInfo: async function (sensorId, callback) {
+
+	  console.log(sensorId)
+
     await pool.getConnection()
     .then(conn => {
 
-    conn.query( "SELECT r.building_floor, r.room_number FROM room r INNER JOIN sensor s ON r.id = s.room_id WHERE s.sensor_id = 'F4:A5:74:89:16:57'")
+      conn.query( "SELECT r.building_floor, r.room_number FROM room r INNER JOIN sensor s ON r.id = s.room_id WHERE s.sensor_id = 'F4:A5:74:89:16:57'")
 
-	.then(function(result) {
-	const queryResult=result[0]
-	const roomInfo = {
-       building_floor: queryResult.building_floor,
-       room_number: queryResult.room_number
-     }
-	  conn.release();
+      .then(function(result) {
+        console.log(result[0]);
 
-     return roomInfo;
-    console.log(result[0]);}) // "initResolve"
-    //const roomInfo = {
-      //building_floor: queryResult.building_floor,
-      //room_number: queryResult.room_number
-    //}
-    //conn.release();
+        const queryResult = result[0]
+  
+        const roomInfo = {
+            building_floor: queryResult.building_floor,
+            room_number: queryResult.room_number
+          }   
 
-    //return roomInfo;
+        callback(roomInfo);
+
+        conn.release();
+      }) 
 
     })
     .catch(err => {
