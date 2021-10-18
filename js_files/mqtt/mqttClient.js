@@ -32,9 +32,8 @@ mqttClient.on("connect", function(){
 
 mqttClient.on("error", function(error){ 
     console.log("mqtt/mqttClient Broker error : " + error);
-    logger.fatal("mqtt/mqttClient Broker error : " + error);
+    logger.warning("mqtt/mqttClient Broker error : " + error);
 
-    process.exit(1);
 })
 
 
@@ -45,7 +44,9 @@ mqttClient.on('message', function(topic, message, packet){
 
     sse.newEvent(message);
 
+    
     db.insert(message);
+    
 
 });
 

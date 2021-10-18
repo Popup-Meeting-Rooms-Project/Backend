@@ -56,6 +56,7 @@ const sseEvents = {
         let msgJson = JSON.parse(message);
         let sensorId = msgJson["sensor"];
 
+        
         const roomInfo = db.getRoomInfo(sensorId);
         
         const data = {
