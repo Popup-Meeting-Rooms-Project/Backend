@@ -45,7 +45,7 @@ mqttClient.on('message', function(topic, message, packet){
     sse.newEvent(message);
 
     
-    //db.insert(message);
+    db.insert(message);
     
 
 });
