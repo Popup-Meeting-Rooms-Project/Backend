@@ -37,7 +37,7 @@ const dbWrite = {
 
 const dbRead = {
 
-  getRoomInfo: async function (sensorId, callback) {
+  getRoomUpdate: async function (sensorId, callback) {
 
 	  console.log(sensorId)
 
@@ -70,7 +70,36 @@ const dbRead = {
       process.exit();
       
     });
+  },
+
+  getAllRooms: async function (callback) {
+
+    await pool.getConnection()
+    .then(conn => {
+
+      conn.query("SELECT id, room_number, building_floor FROM room;")
+
+      .then(function(result) {
+        console.log(result[0]);
+
+        const queryResult = result[0]
+
+
+        callback(queryResult);
+
+        conn.release();
+      }) 
+
+    })
+    .catch(err => {
+      console.log("db/dal DB reading " + err);
+      logger.fatal("db/dal DB reading " + err);
+
+      process.exit();
+      
+    });
   }
+
 }
 
 module.exports = { dbWrite, dbRead }

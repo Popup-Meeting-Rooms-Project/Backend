@@ -2,6 +2,14 @@ const { mqttClientConfig, logger } = require('../config')
 const { dbRead: db } = require('../db/dal');
 
 const clients = [];
+const roomsList = [];
+
+db.getAllRooms(function(queryResult){
+        queryResult.forEach(room => {
+        room.detected=false;
+        roomsList.push(room);  
+        });
+});
 
 const sseRegistration = {
 
@@ -46,6 +54,9 @@ const sseRegistration = {
 
         });
 
+    },
+    getAllRooms : function(){
+    return roomsList;
     }
 }
 
@@ -57,7 +68,7 @@ const sseEvents = {
         let sensorId = msgJson["sensor"];
 
         
-        db.getRoomInfo(sensorId, function(roomInfo){
+        db.getRoomUpdate(sensorId, function(roomInfo){
 
             const data = {
                 building_floor: roomInfo.building_floor,
