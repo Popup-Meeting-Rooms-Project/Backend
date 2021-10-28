@@ -19,7 +19,7 @@ const logger = winston.createLogger({
 
 const apiConfig = {
 
-    port: 8082
+    port: 8080
 
 }
 

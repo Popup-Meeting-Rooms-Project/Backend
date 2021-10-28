@@ -20,7 +20,7 @@ mqttClient.on("connect", function(){
 
     const msg = { 
 
-        "sensor": "F4:A5:74:89:16:57", 
+        "sensor": "F4:G5:11:13", 
         
         "detected": true 
         

@@ -5,10 +5,22 @@ const clients = [];
 const roomsList = [];
 
 db.getAllRooms(function(queryResult){
-        queryResult.forEach(room => {
-        room.detected=false;
-        roomsList.push(room);  
-        });
+	
+
+
+
+	
+        queryResult.forEach(element => {
+
+		
+
+		let room = element;
+   		room.detected=false;
+
+		console.log(room);
+	       roomsList.push(room);
+	});
+	console.log(roomsList);
 });
 
 const sseRegistration = {
@@ -55,8 +67,11 @@ const sseRegistration = {
         });
 
     },
-    getAllRooms : function(){
-    return roomsList;
+    getAllRooms : function(req, res){
+
+    	console.log("Sending allrooms");
+	console.log(roomsList);
+    	res.json(roomsList);
     }
 }
 

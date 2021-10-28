@@ -48,14 +48,16 @@ const dbRead = {
       [sensorId])
 
       .then(function(result) {
-        console.log(result[0]);
 
-        const queryResult = result[0]
-  
+	
+	console.log(result);
+
+        const queryResult = result[0];
+console.log(queryResult);  
         const roomInfo = {
-            building_floor: queryResult.building_floor,
-            room_number: queryResult.room_number
-          }   
+           building_floor: queryResult.building_floor,
+           room_number: queryResult.room_number
+         }   
 
         callback(roomInfo);
 
@@ -79,11 +81,7 @@ const dbRead = {
 
       conn.query("SELECT id, room_number, building_floor FROM room;")
 
-      .then(function(result) {
-        console.log(result[0]);
-
-        const queryResult = result[0]
-
+      .then(function(queryResult) {
 
         callback(queryResult);
 
