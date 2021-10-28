@@ -13,6 +13,8 @@
 
 ![node-current](https://img.shields.io/node/v/ssh2)
 
+[![GitHub Super-Linter](https://github.com/Popup-Meeting-Rooms-Project/Backend/workflows/Lint%20Code%20Base/badge.svg)](https://github.com/marketplace/actions/super-linter)
+
 ## Running the application
 
 ### Requirements
