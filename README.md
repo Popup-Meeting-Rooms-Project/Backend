@@ -9,6 +9,7 @@
 			- [Development](#development)
 			- [Production](#production)
 	- [API reference](#api-reference)
+	        - [Room status](#room-status)
 
 ![node-current](https://img.shields.io/node/v/ssh2)
 
@@ -60,7 +61,7 @@ Base URL
 
 `http://206.189.16.14/`
 
-### Get all rooms
+### Room status
 
 All rooms
 
