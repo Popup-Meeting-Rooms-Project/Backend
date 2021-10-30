@@ -81,6 +81,7 @@ const dbRead = {
 
       .then(function(result) {
         console.log(result[0]);
+        
 
         const queryResult = result[0]
 

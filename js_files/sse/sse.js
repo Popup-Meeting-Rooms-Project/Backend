@@ -56,6 +56,7 @@ const sseRegistration = {
 
     },
     getAllRooms : function(){
+        
     return roomsList;
     }
 }
