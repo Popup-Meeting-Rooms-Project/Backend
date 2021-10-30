@@ -9,24 +9,21 @@
 			- [Development](#development)
 			- [Production](#production)
 	- [API reference](#api-reference)
-		- [Latest room status](#latest-room-status)
+	        - [Room status](#room-status)
+
+![node-current](https://img.shields.io/node/v/ssh2)
+
+[![GitHub Super-Linter](https://github.com/Popup-Meeting-Rooms-Project/Backend/workflows/Lint%20Code%20Base/badge.svg)](https://github.com/marketplace/actions/super-linter)
 
 ## Running the application
 
 ### Requirements
 
-| Tool    | Version |
-| ------- | ------- |
-| Node.js | -       |
-| MariaDB | -       |
-
 **Node.js** xx.x.x or newer is required. Latest LTS is recommended.
-
-**MariaDB** xx.x.x or newer is required. For another database; install approriate `npm package` and configure `path-to-directory`
 
 ### Enviroment variables
 
-Configure `.env` file located in `path-to-directory`.
+Configure `.env` file to project root
 
 	# Database variables
 	DB_HOST=your-database-host
@@ -38,30 +35,40 @@ Configure `.env` file located in `path-to-directory`.
 
 Install dependencies for development enviroment
 
-	npm install
+	$ npm install
+
+> Note that in production environment you can do `$ npm install --only=prod`.
 
 ### Run the application
 
 #### Development
 
-Run the main application `.js` located in `path-to-directory`
+Run the main application `server.js` located in `./js_files/`
 
-	node .js
+	$ node js_files/server.js
 
 #### Production
 
 Run as PM2 process
 
-	pm2 start app.js
+	$ pm2 start js_files/server.js
+
+> Subsequently control pm2 apps by invoking assigned id or name, e.g. `$ pm2 start 0`
 
 ## API reference
+
+> Nginx configuration is underway, expect  port redirecting in the future
 
 Base URL
 
 `http://206.189.16.14/`
 
-### Latest room status
+### Room status
 
-Fetch latest room updates with GET request
+All rooms
 
-`http://206.189.16.14/json`
+`http://206.189.16.14:8080/getAllRooms`
+
+> If you encounter issues with CORS, fetch static mockup json from backup endpoint
+
+`http://206.189.16.14:3001/json`
