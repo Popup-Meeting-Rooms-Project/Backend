@@ -19,7 +19,7 @@
 
 ### Requirements
 
-**Node.js** xx.x.x or newer is required. Latest LTS is recommended.
+**Node.js** 10.16.0 or newer is required. Latest LTS is recommended.
 
 ### Enviroment variables
 
@@ -35,25 +35,25 @@ Configure `.env` file to project root
 
 Install dependencies for development enviroment
 
-	$ npm install
+	npm install
 
-> Note that in production environment you can do `$ npm install --only=prod`.
+> Note that in production environment you can do `npm install --only=prod`.
 
 ### Run the application
 
 #### Development
 
-Run the main application `server.js` located in `./js_files/`
+Run the main application `server.js` located in project root
 
-	$ node js_files/server.js
+	node server.js
 
 #### Production
 
 Run as PM2 process
 
-	$ pm2 start js_files/server.js
+	pm2 start server.js
 
-> Subsequently control pm2 apps by invoking assigned id or name, e.g. `$ pm2 start 0`
+> Subsequently control pm2 apps by invoking assigned id or name, e.g. `pm2 start 0`
 
 ## API reference
 

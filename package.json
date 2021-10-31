@@ -26,5 +26,10 @@
   "bugs": {
     "url": "https://github.com/Popup-Meeting-Rooms-Project/Backend/issues"
   },
-  "homepage": "https://github.com/Popup-Meeting-Rooms-Project/Backend#readme"
+  "homepage": "https://github.com/Popup-Meeting-Rooms-Project/Backend#readme",
+  "devDependencies": {
+    "eslint": "^8.1.0",
+    "eslint-config-prettier": "^8.3.0",
+    "prettier": "^2.4.1"
+  }
 }
