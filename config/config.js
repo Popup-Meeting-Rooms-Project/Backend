@@ -1,36 +1,30 @@
 const express = require('express')
 const app = express()
 const credentials = require('dotenv').config()
-const winston = require('winston');
+const winston = require('winston')
 const cors = require('cors')
 
 app.use(
-	cors({
-		origin: '*',
-	})
+  cors({
+    origin: '*',
+  })
 )
 
-
 const logLevels = {
-    fatal: 0,
-    error: 1,
-    warn: 2,
-    info: 3
-};
-  
-const logger = winston.createLogger({
-    levels: logLevels,
-    format: winston.format.json(),
-    transports: [
-        new winston.transports.File({ filename: 'logs/process.log' })
-    ]
-});
+  fatal: 0,
+  error: 1,
+  warn: 2,
+  info: 3,
+}
 
+const logger = winston.createLogger({
+  levels: logLevels,
+  format: winston.format.json(),
+  transports: [new winston.transports.File({ filename: 'logs/process.log' })],
+})
 
 const apiConfig = {
-
-    port: 8080
-
+  port: 8080,
 }
 
 /*
@@ -39,23 +33,19 @@ const apiConfig = {
     
 */
 
-
 const mqttClientConfig = {
-
-    url : "mqtt://test.mosquitto.org",
-    port : 1883,
-    options : {},
-    topic : "hh-iot-mqtt/outTopic"
+  url: 'mqtt://test.mosquitto.org',
+  port: 1883,
+  options: {},
+  topic: 'hh-iot-mqtt/outTopic',
 }
 
 const dbConfig = {
-    host: process.env.DB_HOST, 
-    user: process.env.DB_USER, 
-    password: process.env.DB_PASS,
-    database: process.env.DB_NAME,
-    connectionLimit: 5
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASS,
+  database: process.env.DB_NAME,
+  connectionLimit: 5,
 }
 
-
-module.exports = {apiConfig, mqttClientConfig, dbConfig, logger}
-
+module.exports = { apiConfig, mqttClientConfig, dbConfig, logger }

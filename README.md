@@ -12,7 +12,6 @@
 	        - [Room status](#room-status)
 
 ![node-current](https://img.shields.io/node/v/ssh2)
-
 [![GitHub Super-Linter](https://github.com/Popup-Meeting-Rooms-Project/Backend/workflows/Lint%20Code%20Base/badge.svg)](https://github.com/marketplace/actions/super-linter)
 
 ## Running the application
@@ -26,10 +25,10 @@
 Configure `.env` file to project root
 
 	# Database variables
-	DB_HOST=your-database-host
-	DB_USER=your-database-user
-	DB_PASS=your-database-password
-	DB_NAME=your-database-name
+	DB_HOST=database-host
+	DB_USER=database-user
+	DB_PASS=database-password
+	DB_NAME=database-name
 
 ### Dependencies
 

@@ -9,13 +9,13 @@
         "id": 101,
         "room_number": 302,
         "building_floor": 3,
-        "detected": false
+        "detected": true
     },
     {
         "id": 102,
         "room_number": 303,
         "building_floor": 3,
-        "detected": false
+        "detected": true
     },
     {
         "id": 103,
@@ -39,7 +39,7 @@
         "id": 106,
         "room_number": 305,
         "building_floor": 3,
-        "detected": false
+        "detected": true
     },
     {
         "id": 107,
