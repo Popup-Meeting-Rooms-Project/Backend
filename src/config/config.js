@@ -1,14 +1,5 @@
-const express = require('express')
-const app = express()
 require('dotenv').config()
 const winston = require('winston')
-const cors = require('cors')
-
-app.use(
-  cors({
-    origin: '*',
-  })
-)
 
 const logLevels = {
   fatal: 0,

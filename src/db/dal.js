@@ -1,6 +1,5 @@
 const mariadb = require('mariadb')
 require('dotenv').config()
-
 const { dbConfig, logger } = require('../config/config')
 
 const pool = mariadb.createPool({

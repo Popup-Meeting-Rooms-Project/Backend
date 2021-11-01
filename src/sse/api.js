@@ -1,9 +1,12 @@
-const { apiConfig, logger } = require('../config/config')
 const express = require('express')
-const { sseRegistration: sse } = require('../sse/sse')
-
 const app = express()
+const { apiConfig, logger } = require('../config/config')
+const { sseRegistration: sse } = require('../sse/sse')
+const cors = require('cors')
+const helmet = require('helmet')
 
+app.use(helmet())
+app.use(cors())
 app.get('/register', sse.register)
 app.get('/getAllRooms', sse.getAllRooms)
 

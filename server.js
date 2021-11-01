@@ -1,18 +1,8 @@
 const express = require('express')
 const app = express()
-// eslint-disable-next-line
-const port = 3000
 const helmet = require('helmet')
-const cors = require('cors')
-
-app.use(helmet())
-app.use(
-  cors({
-    origin: '*',
-  })
-)
-
 const fs = require('fs')
+app.use(helmet())
 
 fs.writeFile('logs/process.log', '*** SERVER STARTED ***\n', function () {
   console.log('*** SERVER STARTED ***')
@@ -24,3 +14,5 @@ fs.writeFile('logs/process.log', '*** SERVER STARTED ***\n', function () {
 process.on('exit', function () {
   console.log('*** SERVER STOPPED ***')
 })
+
+app.listen(3000)
