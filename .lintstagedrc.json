@@ -1,3 +1,5 @@
 {
-  "*.{js,md}": ["npm run format", "npm run lint"]
+  "*.{js,md}": "npm run format",
+  "*.js": "npm run lint",
+  "*.sql": "npm run sql"
 }
