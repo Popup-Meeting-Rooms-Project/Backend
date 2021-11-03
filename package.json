@@ -34,6 +34,7 @@
     "eslint": "^8.1.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^4.0.0",
+    "git-hooks": "^1.1.10",
     "husky": "^7.0.0",
     "lint-staged": "^11.2.6",
     "markdownlint": "^0.24.0",
