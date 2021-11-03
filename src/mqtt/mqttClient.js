@@ -19,7 +19,7 @@ mqttClient.on('connect', function () {
   const msg = {
     sensor: 'F4:G5:11:13',
 
-    detected: true,
+    detected: false,
   }
 
   mqttClient.publish(mqttClientConfig.topic, JSON.stringify(msg), {})

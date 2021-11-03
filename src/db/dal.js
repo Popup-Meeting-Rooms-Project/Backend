@@ -70,7 +70,9 @@ const dbRead = {
       .getConnection()
       .then((conn) => {
         conn
-          .query('SELECT id, room_number, building_floor FROM room;')
+          .query(
+            'SELECT id, room_name, building_floor FROM room ORDER BY building_floor, room_name ASC;'
+          )
 
           .then(function (queryResult) {
             callback(queryResult)
