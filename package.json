@@ -15,7 +15,10 @@
     "winston": "^3.3.3"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint --ext .js src",
+    "format": "prettier --write \"**/*.+(js|md)\"",
+    "sql": "sql-lint"
   },
   "repository": {
     "type": "git",
@@ -26,5 +29,16 @@
   "bugs": {
     "url": "https://github.com/Popup-Meeting-Rooms-Project/Backend/issues"
   },
-  "homepage": "https://github.com/Popup-Meeting-Rooms-Project/Backend#readme"
+  "homepage": "https://github.com/Popup-Meeting-Rooms-Project/Backend#readme",
+  "devDependencies": {
+    "eslint": "^8.1.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "git-hooks": "^1.1.10",
+    "husky": "^7.0.0",
+    "lint-staged": "^11.2.6",
+    "markdownlint": "^0.24.0",
+    "prettier": "^2.4.1",
+    "sql-lint": "^0.0.19"
+  }
 }

@@ -1,31 +1,31 @@
 -- Create Tables
-CREATE TABLE display_user 
+CREATE TABLE display_user
 (
-id bigint auto_increment primary key NOT NULL, 
-name varchar(50) NOT NULL, 
-login varchar(50) NOT NULL, 
-password varchar(50) NOT NULL, 
+id bigint auto_increment primary key NOT NULL,
+name varchar(50) NOT NULL,
+login varchar(50) NOT NULL,
+password varchar(50) NOT NULL,
 role varchar(15) NOT NULL,
 CONSTRAINT CHK_display_user_role CHECK (role IN ('User', 'Admin')),
 CONSTRAINT UQ_display_user_login UNIQUE (login)
 );
 
 
-CREATE TABLE room 
+CREATE TABLE room
 (
-id bigint auto_increment primary key NOT NULL, 
-room_number int NOT NULL, 
-building varchar(50) NOT NULL, 
-building_floor int NOT NULL, 
+id bigint auto_increment primary key NOT NULL,
+room_number int NOT NULL,
+building varchar(50) NOT NULL,
+building_floor int NOT NULL,
 max_number_people int NOT NULL
 )
 auto_increment = 100;
 
-CREATE TABLE sensor 
+CREATE TABLE sensor
 (
 id bigint auto_increment primary key NOT NULL,
 sensor_id varchar(50) NOT NULL,
-room_id bigint NOT NULL, 
+room_id bigint NOT NULL,
 CONSTRAINT FK_SENSOR_ROOM FOREIGN KEY (room_id) REFERENCES room(id),
 CONSTRAINT UQ_sensor_id UNIQUE (sensor_id)
 )
@@ -72,7 +72,7 @@ INSERT INTO sensor (sensor_id, room_id) VALUES
 ("K2:R5:99:57", 108)
 ;
 
-INSERT INTO sensor_history_tracker (sensor_json_data) VALUES 
+INSERT INTO sensor_history_tracker (sensor_json_data) VALUES
 (JSON_COMPACT('
 {
       "id": "F4:G5:11:13",
@@ -85,7 +85,7 @@ INSERT INTO sensor_history_tracker (sensor_json_data) VALUES
 	  "occupancy": true
 }
 ')
-);
+));
 
 -- Query to extract Data from Json Doc
 SELECT JSON_EXTRACT(sensor_json_data, '$.occupancy') FROM sensor;

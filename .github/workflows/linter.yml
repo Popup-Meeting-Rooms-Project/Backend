@@ -48,12 +48,10 @@ jobs:
       # Run Linter against code base #
       ################################
       - name: Lint Code Base
-        uses: github/super-linter@v4
+        uses: github/super-linter/slim@v4
         env:
-          VALIDATE_ALL_CODEBASE: false
-          DEFAULT_BRANCH: master
+          VALIDATE_ALL_CODEBASE: true
+          DEFAULT_BRANCH: main
+          VALIDATE_JAVASCRIPT_STANDARD: false
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Super-Linter
-        uses: github/super-linter@v4.8.1
-    
+          FILTER_REGEX_EXCLUDE: .*husky/*
