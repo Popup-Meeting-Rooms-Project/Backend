@@ -1,7 +1,6 @@
 const mariadb = require('mariadb')
 require('dotenv').config()
-const { dbConfig, logger } = require('../config/config')
-
+const { dbConfig, logger } = require('../config')
 const pool = mariadb.createPool({
   host: process.env.DB_HOST,
   user: process.env.DB_USER,
@@ -38,18 +37,19 @@ const dbRead = {
       .then((conn) => {
         conn
           .query(
-            'SELECT r.building_floor, r.room_number FROM room r INNER JOIN sensor s ON r.id = s.room_id WHERE s.sensor_id = ?',
+            'SELECT r.id, r.building_floor, r.room_name FROM room r INNER JOIN sensor s ON r.id = s.room_id WHERE s.sensor_id = ?',
             [sensorId]
           )
 
           .then(function (result) {
-            console.log(result)
+            console.log(result[0])
 
             const queryResult = result[0]
-            console.log(queryResult)
+
             const roomInfo = {
+              id: queryResult.id,
+              room_name: queryResult.room_name,
               building_floor: queryResult.building_floor,
-              room_number: queryResult.room_number,
             }
 
             callback(roomInfo)
@@ -70,11 +70,13 @@ const dbRead = {
       .getConnection()
       .then((conn) => {
         conn
-          .query(
-            'SELECT id, room_name, building_floor FROM room ORDER BY building_floor, room_name ASC;'
-          )
+          .query('SELECT id, room_name, building_floor FROM room;')
 
-          .then(function (queryResult) {
+          .then(function (result) {
+            console.log(result[0])
+
+            const queryResult = result[0]
+
             callback(queryResult)
 
             conn.release()
