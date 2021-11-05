@@ -80,6 +80,7 @@ const dbRead = {
       conn.query("SELECT id, room_number, building_floor FROM room;")
 
       .then(function(result) {
+        
         console.log(result[0]);
         
 
