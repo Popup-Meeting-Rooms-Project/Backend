@@ -44,7 +44,7 @@ const dbRead = {
     await pool.getConnection()
     .then(conn => {
 
-      conn.query( "SELECT r.building_floor, r.room_number FROM room r INNER JOIN sensor s ON r.id = s.room_id WHERE s.sensor_id = ?",
+      conn.query( "SELECT r.id, r.building_floor, r.room_name FROM room r INNER JOIN sensor s ON r.id = s.room_id WHERE s.sensor_id = ?",
       [sensorId])
 
       .then(function(result) {
@@ -53,8 +53,9 @@ const dbRead = {
         const queryResult = result[0]
   
         const roomInfo = {
-            building_floor: queryResult.building_floor,
-            room_number: queryResult.room_number
+            id: queryResult.id,
+            room_name: queryResult.room_name,
+            building_floor: queryResult.building_floor
           }   
 
         callback(roomInfo);
@@ -77,7 +78,7 @@ const dbRead = {
     await pool.getConnection()
     .then(conn => {
 
-      conn.query("SELECT id, room_number, building_floor FROM room;")
+      conn.query("SELECT id, room_name, building_floor FROM room;")
 
       .then(function(result) {
         

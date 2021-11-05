@@ -71,20 +71,36 @@ const sseEvents = {
         
         db.getRoomUpdate(sensorId, function(roomInfo){
 
+            roomInfo.detected = msgJson["detected"];
+            /*
             const data = {
+                id: roomInfo.id,
                 building_floor: roomInfo.building_floor,
-                room_number: roomInfo.room_number,
+                room_name: roomInfo.room_name,
                 room_availability: msgJson["detected"],
                 timeStamp: Date.now()
             }
-        console.log(JSON.stringify(data));
-            clients.forEach(client => sendData(data, client));
+            */
+            update(roomsList, roomInfo.id, msgJson["detected"]);
+
+            clients.forEach(client => sendData(roomInfo, client));
 
         });
         
     }
 }  
 
+const update = function(roomsList, id, detected){
+
+    roomsList.forEach(room => {
+
+        if(room.id === id){
+            room.detected = detected;
+        }
+    });
+
+
+}
 
 const sendData = function(data, client){
 
