@@ -8,6 +8,7 @@ db.getAllRooms(function (queryResult) {
     room.detected = false
     roomsList.push(room)
   })
+  console.log(roomsList)
 })
 
 const sseRegistration = {
@@ -47,8 +48,9 @@ const sseRegistration = {
       logger.info('sse/sse Disconnection from client ' + clientId)
     })
   },
-  getAllRooms: function () {
-    return roomsList
+  getAllRooms: function (req, res) {
+    console.log('Hello from the route')
+    res.json(roomsList)
   },
 }
 

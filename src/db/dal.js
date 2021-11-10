@@ -72,11 +72,7 @@ const dbRead = {
         conn
           .query('SELECT id, room_name, building_floor FROM room;')
 
-          .then(function (result) {
-            console.log(result[0])
-
-            const queryResult = result[0]
-
+          .then(function (queryResult) {
             callback(queryResult)
 
             conn.release()
