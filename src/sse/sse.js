@@ -1,4 +1,4 @@
-const { mqttClientConfig, logger } = require('../config')
+const { mqttClientConfig, logger } = require('../config/config')
 const { dbRead: db } = require('../db/dal')
 const clients = []
 const roomsList = []
