@@ -14,7 +14,7 @@ CONSTRAINT UQ_display_user_login UNIQUE (login)
 CREATE TABLE room
 (
 id bigint auto_increment primary key NOT NULL,
-room_number int NOT NULL,
+room_name varchar(50) NOT NULL,
 building varchar(50) NOT NULL,
 building_floor int NOT NULL,
 max_number_people int NOT NULL
@@ -47,16 +47,16 @@ INSERT INTO display_user (name, login, password, role) VALUES
 ;
 
 
-INSERT INTO room (room_number, building, building_floor, max_number_people) VALUES
-(101, 'Helsinki', 1, 4),
-(302, 'Helsinki', 3, 4),
-(303, 'Helsinki', 3, 4),
-(202, 'Helsinki', 2, 2),
-(204, 'Helsinki', 2, 2),
-(304, 'Oulu', 3, 2),
-(305, 'Oulu', 3, 2),
-(401, 'Oulu', 4, 6),
-(301, 'Oulu', 3, 6)
+INSERT INTO room (room_name, building, building_floor, max_number_people) VALUES
+('Mercury', 'Helsinki', 1, 4),
+('Venus', 'Helsinki', 3, 4),
+('Earth', 'Helsinki', 3, 4),
+('Mars', 'Helsinki', 2, 2),
+('Jupiter', 'Helsinki', 2, 2),
+('Saturn', 'Oulu', 3, 2),
+('Ganymede', 'Oulu', 3, 2),
+('Callisto', 'Oulu', 4, 6),
+('Pluto', 'Oulu', 3, 6)
 ;
 
 

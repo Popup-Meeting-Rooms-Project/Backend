@@ -4,11 +4,10 @@ const clients = []
 const roomsList = []
 
 db.getAllRooms(function (queryResult) {
-  queryResult.forEach((element) => {
-    let room = element
+
+  queryResult.forEach((room) => {
     room.detected = false
 
-    console.log(room)
     roomsList.push(room)
   })
   console.log(roomsList)
@@ -64,16 +63,29 @@ const sseEvents = {
     let sensorId = msgJson['sensor']
 
     db.getRoomUpdate(sensorId, function (roomInfo) {
-      const data = {
-        building_floor: roomInfo.building_floor,
-        room_number: roomInfo.room_number,
-        room_availability: msgJson['detected'],
-        timeStamp: Date.now(),
-      }
-      console.log(JSON.stringify(data))
-      clients.forEach((client) => sendData(data, client))
+      roomInfo.detected = msgJson['detected']
+      /*
+            const data = {
+                id: roomInfo.id,
+                building_floor: roomInfo.building_floor,
+                room_name: roomInfo.room_name,
+                room_availability: msgJson["detected"],
+                timeStamp: Date.now()
+            }
+            */
+      update(roomsList, roomInfo.id, msgJson['detected'])
+
+      clients.forEach((client) => sendData(roomInfo, client))
     })
   },
+}
+
+const update = function (roomsList, id, detected) {
+  roomsList.forEach((room) => {
+    if (room.id === id) {
+      room.detected = detected
+    }
+  })
 }
 
 const sendData = function (data, client) {
