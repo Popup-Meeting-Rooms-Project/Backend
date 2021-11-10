@@ -4,8 +4,10 @@ const clients = []
 const roomsList = []
 
 db.getAllRooms(function (queryResult) {
+
   queryResult.forEach((room) => {
     room.detected = false
+
     roomsList.push(room)
   })
   console.log(roomsList)
@@ -49,7 +51,8 @@ const sseRegistration = {
     })
   },
   getAllRooms: function (req, res) {
-    console.log('Hello from the route')
+    console.log('Sending allrooms')
+    console.log(roomsList)
     res.json(roomsList)
   },
 }
