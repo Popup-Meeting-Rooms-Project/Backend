@@ -4,7 +4,6 @@ const clients = []
 const roomsList = []
 
 db.getAllRooms(function (queryResult) {
-
   queryResult.forEach((room) => {
     room.detected = false
 

@@ -72,7 +72,6 @@ const dbRead = {
         conn
           .query('SELECT id, room_name, building_floor FROM room;')
 
-
           .then(function (queryResult) {
             callback(queryResult)
 
