@@ -88,7 +88,8 @@ const update = function (roomsList, id, detected) {
 }
 
 const sendData = function (data, client) {
-  client.response.write(JSON.stringify(data))
+  //client.response.write(JSON.stringify(data))
+  client.response.json(data)
 }
 
 module.exports = { sseRegistration, sseEvents }
