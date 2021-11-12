@@ -16,7 +16,7 @@ const sseRegistration = {
   register: function (request, response) {
     const headers = {
       'Content-Type': 'text/event-stream',
-      Connection: 'keep-alive',
+      'Connection': 'keep-alive',
       'Cache-Control': 'no-cache',
     }
 
@@ -89,7 +89,7 @@ const update = function (roomsList, id, detected) {
 
 const sendData = function (data, client) {
   //client.response.write(JSON.stringify(data))
-  client.response.json(data)
+  client.response.write('data:' + JSON.stringify(data) + '\n\n')
 }
 
 module.exports = { sseRegistration, sseEvents }
