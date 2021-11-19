@@ -18,16 +18,13 @@ const apiConfig = {
   port: 8080,
 }
 
-/*
-    url : "mqtt://128.214.253.119",
-    port : 8888,
-    
-*/
-
 const mqttClientConfig = {
-  url: 'mqtt://test.mosquitto.org',
-  port: 1883,
-  options: {},
+  url: 'mqtt://128.214.253.119',
+  port: 8888,
+  options: {
+    username: 'hh-backend-client',
+    password: 'ESP32sketch',
+  },
   topic: 'hh-iot-mqtt/outTopic',
 }
 
