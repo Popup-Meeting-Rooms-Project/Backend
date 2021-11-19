@@ -20,8 +20,8 @@ const apiConfig = {
 
 const mqttClientConfig = {
   url: 'mqtt://128.214.253.119',
-  port: 8888,
   options: {
+    port: 8888,
     username: 'hh-backend-client',
     password: 'ESP32sketch',
   },
