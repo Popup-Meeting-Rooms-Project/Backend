@@ -2,12 +2,76 @@ const { mqttClientConfig, logger } = require('../config/config')
 const { dbRead: db } = require('../db/dal')
 const clients = []
 const roomsList = []
+const roomsList2 = []
 
 db.getAllRooms(function (queryResult) {
   queryResult.forEach((room) => {
     room.detected = false
 
     roomsList.push(room)
+  })
+  console.log(roomsList)
+})
+
+db.getAllRooms2(function (queryResult) {
+  queryResult.forEach((elem) => {
+
+    const room = {
+      id : elem.id,
+      room_name : elem.room_name,
+      detected : false
+  }
+  
+    var buildingExist = false;
+
+    roomsList2.forEach((building) => {
+
+      if(building.name == elem.building){
+        buildingExist = true;
+
+        var floorExist = false;
+
+        building.floors.forEach((floor) => {
+          
+          if(floor.id == elem.floor){
+            floorExist = true;
+            floor.rooms.push(room);
+          }
+        })
+        
+        if(!floorExist){
+
+          const newFloor = {
+            id : elem.floor,
+            rooms : []
+          }
+
+          newFloor.rooms.push(room);
+          building.floors.push(newFloor);
+        }
+      }
+    })
+
+    if(!buildingExist){
+
+      const newFloor = {
+        id : elem.floor,
+        rooms : []
+      }
+
+      const newBuilding = {
+        name : elem.building,
+        floors : []
+      }
+      
+      newFloor.rooms.push(room);
+      newBuilding.floors.push(newFloor);
+      roomsList2.push(newBuilding);
+
+    }
+
+
+
   })
   console.log(roomsList)
 })
@@ -54,6 +118,9 @@ const sseRegistration = {
     console.log(roomsList)
     res.json(roomsList)
   },
+  getAllRooms2: function (req, res) {
+    res.json(roomsList2)
+  }
 }
 
 const sseEvents = {
