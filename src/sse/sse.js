@@ -64,7 +64,6 @@ db.getAllRooms2(function (queryResult) {
       roomsList2.push(newBuilding)
     }
   })
-  logger.info(roomsList2)
 })
 
 const sseRegistration = {
@@ -110,6 +109,7 @@ const sseRegistration = {
     res.json(roomsList)
   },
   getAllRooms2: function (req, res) {
+    logger.info(roomsList2)
     res.json(roomsList2)
   },
 }

@@ -93,6 +93,7 @@ const dbRead = {
           .query('SELECT id, room_name, building, building_floor FROM room;')
 
           .then(function (queryResult) {
+            logger.info('db/dal DB reading ' + queryResult)
             callback(queryResult)
 
             conn.release()
