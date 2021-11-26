@@ -104,7 +104,7 @@ const dbRead = {
 
         process.exit()
       })
-  }
+  },
 }
 
 module.exports = { dbWrite, dbRead }
