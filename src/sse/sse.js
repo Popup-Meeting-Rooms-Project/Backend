@@ -56,7 +56,7 @@ db.getAllRooms2(function (queryResult) {
 
       const newBuilding = {
         name: elem.building,
-        building_floor: [],
+        floors: [],
       }
 
       newFloor.rooms.push(room)
