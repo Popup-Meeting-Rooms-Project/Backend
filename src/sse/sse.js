@@ -106,7 +106,7 @@ const sseRegistration = {
   getAllRooms: function (req, res) {
     console.log('Sending allrooms')
     console.log(roomsList)
-    res.json(roomsList)
+    res.json('hello je suis perdue')
   },
   getAllRooms2: function (req, res) {
     res.json('hello je suis perdue')
