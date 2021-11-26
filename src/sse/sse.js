@@ -29,16 +29,16 @@ db.getAllRooms2(function (queryResult) {
 
         var floorExist = false
 
-        building.floors.forEach((floor) => {
-          if (floor.id == elem.floor) {
+        building.floors.forEach((building_floor) => {
+          if (building_floor.id == elem.building_floor) {
             floorExist = true
-            floor.rooms.push(room)
+            building_floor.rooms.push(room)
           }
         })
 
         if (!floorExist) {
           const newFloor = {
-            id: elem.floor,
+            id: elem.building_floor,
             rooms: [],
           }
 
