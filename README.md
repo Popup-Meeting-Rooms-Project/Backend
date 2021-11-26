@@ -1,37 +1,51 @@
 # Backend
 
 - [Backend](#backend)
-  - [Running the application](#running-the-application)
-    - [Requirements](#requirements)
-    - [Enviroment variables](#enviroment-variables)
-    - [Dependencies](#dependencies)
-    - [Run the application](#run-the-application)
-      - [Development](#development)
-      - [Production](#production)
+  - [Overview](#overview)
+  - [Setting up](#setting-up)
+    - [Server](#server)
+      - [Requirements](#requirements)
+      - [Enviroment variables](#enviroment-variables)
+      - [Dependencies](#dependencies)
+    - [Database](#database)
+  - [Run the application](#run-the-application)
+    - [Development](#development)
+    - [Production](#production)
   - [API reference](#api-reference)
-    - [Room status](#room-status)
+  - [Code quality](#code-quality)
+    - [Local linting](#local-linting)
+    - [GitHub Super-Linter](#github-super-linter)
+  - [License](#license)
 
-![node-current](https://img.shields.io/node/v/ssh2)
+![node-current](https://img.shields.io/node/v/ssh2) ![express](https://img.shields.io/badge/framework-express-blue) [![GitHub Super-Linter](https://github.com/Popup-Meeting-Rooms-Project/Backend/workflows/Lint%20Code%20Base/badge.svg)](https://github.com/marketplace/actions/super-linter)
 
-[![GitHub Super-Linter](https://github.com/Popup-Meeting-Rooms-Project/Backend/workflows/Lint%20Code%20Base/badge.svg)](https://github.com/marketplace/actions/super-linter)
+## Overview
 
-## Running the application
+Backend repository consists of 2 parts: **backend server** using Node.js' Express framework & **database** using MariaDB.
 
-### Requirements
+It acts as a middleman between IoT sensors and Frontend application receiving, storing and serving data.
+
+Architecture map
+![architecture](diagram.jpg)
+
+## Setting up
+
+### Server
+
+#### Requirements
 
 **Node.js** 10.16.0 or newer is required. Latest LTS is recommended.
 
-### Enviroment variables
+#### Enviroment variables
 
-Configure `.env` file to project root
+Configure `.env` file with database credentials to project root
 
-    # Database variables
-    DB_HOST=your-database-host
-    DB_USER=your-database-user
-    DB_PASS=your-database-password
-    DB_NAME=your-database-name
+    DB_HOST='localhost'
+    DB_USER='username'
+    DB_PASS='password'
+    DB_NAME='database'
 
-### Dependencies
+#### Dependencies
 
 Install dependencies for development enviroment
 
@@ -39,9 +53,20 @@ Install dependencies for development enviroment
 
 > Note that in production environment you can do `npm install --only=prod`.
 
-### Run the application
+### Database
 
-#### Development
+Project uses [MariaDB](https://mariadb.org/). It is available for most Linux distribution repositories and Windows.
+
+    # Arch based
+    pacman -S mariadb
+    # Debian based
+    apt install mariadb-server
+
+Database can be created using [this SQL file](Create%20Tables%20and%20Data%20in%20MariaDB.sql).
+
+## Run the application
+
+### Development
 
 Run the main application `server.js` located in project root
 
@@ -51,7 +76,7 @@ or
 
     npm start
 
-#### Production
+### Production
 
 Run with
 
@@ -65,14 +90,39 @@ Or run as PM2 process
 
 ## API reference
 
-> No SSL certificate means HTTPS protocol is disabled. If you run into CORS error, make sure your browser doesn't enforce HTTPS connection
+> No SSL certificate means HTTPS protocol is disabled. If you run into CORS error, make sure your browser doesn't force HTTPS protocol
 
 Base URL
 
 `http://206.189.16.14/`
 
-### Room status
+Register
 
-All rooms
+`http://206:189.16.14/register`
+
+All rooms' status
 
 `http://206.189.16.14/getAllRooms`
+
+## Code quality
+
+Several tools have been utilized to improve and sanitize codebase. Dotfiles are included within repository.
+
+### Local linting
+
+Files are being linted with
+
+- ESLint
+- Prettier
+- sql-lint
+- husky
+
+Pre-commit hook is configured to run linting against staged files and prevent faulty commits.
+
+### GitHub Super-Linter
+
+Pushed commits and merge requests are linted using [GitHub Super-Linter](https://github.com/github/super-linter). See the configuration file [linter.yml](.github/workflows/linter.yml) for details.
+
+## License
+
+TBA
