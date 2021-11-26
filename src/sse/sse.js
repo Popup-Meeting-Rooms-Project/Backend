@@ -16,7 +16,7 @@ const sseRegistration = {
   register: function (request, response) {
     const headers = {
       'Content-Type': 'text/event-stream',
-      'Connection': 'keep-alive',
+      Connection: 'keep-alive',
       'Cache-Control': 'no-cache',
     }
 
