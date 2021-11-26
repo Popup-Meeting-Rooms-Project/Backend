@@ -30,7 +30,7 @@ db.getAllRooms2(function (queryResult) {
         var floorExist = false
 
         building.floors.forEach((floor) => {
-          if (floor.id == elem.building_floor) {
+          if (floor.id == elem.floor) {
             floorExist = true
             floor.rooms.push(room)
           }
@@ -38,7 +38,7 @@ db.getAllRooms2(function (queryResult) {
 
         if (!floorExist) {
           const newFloor = {
-            id: elem.building_floor,
+            id: elem.floor,
             rooms: [],
           }
 
@@ -50,7 +50,7 @@ db.getAllRooms2(function (queryResult) {
 
     if (!buildingExist) {
       const newFloor = {
-        id: elem.building_floor,
+        id: elem.floor,
         rooms: [],
       }
 
@@ -121,15 +121,7 @@ const sseEvents = {
 
     db.getRoomUpdate(sensorId, function (roomInfo) {
       roomInfo.detected = msgJson['detected']
-      /*
-            const data = {
-                id: roomInfo.id,
-                building_floor: roomInfo.building_floor,
-                room_name: roomInfo.room_name,
-                room_availability: msgJson["detected"],
-                timeStamp: Date.now()
-            }
-            */
+
       update(roomsList, roomInfo.id, msgJson['detected'])
 
       clients.forEach((client) => sendData(roomInfo, client))
