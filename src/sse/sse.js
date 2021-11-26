@@ -15,63 +15,54 @@ db.getAllRooms(function (queryResult) {
 
 db.getAllRooms2(function (queryResult) {
   queryResult.forEach((elem) => {
-
     const room = {
-      id : elem.id,
-      room_name : elem.room_name,
-      detected : false
-  }
-  
-    var buildingExist = false;
+      id: elem.id,
+      room_name: elem.room_name,
+      detected: false,
+    }
+
+    var buildingExist = false
 
     roomsList2.forEach((building) => {
+      if (building.name == elem.building) {
+        buildingExist = true
 
-      if(building.name == elem.building){
-        buildingExist = true;
-
-        var floorExist = false;
+        var floorExist = false
 
         building.floors.forEach((floor) => {
-          
-          if(floor.id == elem.floor){
-            floorExist = true;
-            floor.rooms.push(room);
+          if (floor.id == elem.floor) {
+            floorExist = true
+            floor.rooms.push(room)
           }
         })
-        
-        if(!floorExist){
 
+        if (!floorExist) {
           const newFloor = {
-            id : elem.floor,
-            rooms : []
+            id: elem.floor,
+            rooms: [],
           }
 
-          newFloor.rooms.push(room);
-          building.floors.push(newFloor);
+          newFloor.rooms.push(room)
+          building.floors.push(newFloor)
         }
       }
     })
 
-    if(!buildingExist){
-
+    if (!buildingExist) {
       const newFloor = {
-        id : elem.floor,
-        rooms : []
+        id: elem.floor,
+        rooms: [],
       }
 
       const newBuilding = {
-        name : elem.building,
-        floors : []
+        name: elem.building,
+        floors: [],
       }
-      
-      newFloor.rooms.push(room);
-      newBuilding.floors.push(newFloor);
-      roomsList2.push(newBuilding);
 
+      newFloor.rooms.push(room)
+      newBuilding.floors.push(newFloor)
+      roomsList2.push(newBuilding)
     }
-
-
-
   })
   console.log(roomsList)
 })
@@ -120,7 +111,7 @@ const sseRegistration = {
   },
   getAllRooms2: function (req, res) {
     res.json(roomsList2)
-  }
+  },
 }
 
 const sseEvents = {
