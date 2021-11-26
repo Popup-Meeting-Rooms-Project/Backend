@@ -109,7 +109,7 @@ const sseRegistration = {
     res.json(roomsList)
   },
   getAllRooms2: function (req, res) {
-    res.json(roomsList)
+    res.json('hello je suis perdue')
   },
 }
 
