@@ -50,7 +50,7 @@ db.getAllRooms2(function (queryResult) {
 
     if (!buildingExist) {
       const newFloor = {
-        id: elem.floor,
+        id: elem.building_floor,
         rooms: [],
       }
 
