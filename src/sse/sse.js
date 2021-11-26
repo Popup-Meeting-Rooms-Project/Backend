@@ -30,7 +30,7 @@ db.getAllRooms2(function (queryResult) {
         var floorExist = false
 
         building.floors.forEach((floor) => {
-          if (floor.id == elem.floor) {
+          if (floor.id == elem.building_floor) {
             floorExist = true
             floor.rooms.push(room)
           }
@@ -38,7 +38,7 @@ db.getAllRooms2(function (queryResult) {
 
         if (!floorExist) {
           const newFloor = {
-            id: elem.floor,
+            id: elem.building_floor,
             rooms: [],
           }
 
@@ -50,7 +50,7 @@ db.getAllRooms2(function (queryResult) {
 
     if (!buildingExist) {
       const newFloor = {
-        id: elem.floor,
+        id: elem.building_floor,
         rooms: [],
       }
 
@@ -106,10 +106,10 @@ const sseRegistration = {
   getAllRooms: function (req, res) {
     console.log('Sending allrooms')
     console.log(roomsList)
-    res.json('hello je suis perdue')
+    res.json(roomsList)
   },
   getAllRooms2: function (req, res) {
-    res.json('hello je suis perdue')
+    res.json(roomsList2)
   },
 }
 
