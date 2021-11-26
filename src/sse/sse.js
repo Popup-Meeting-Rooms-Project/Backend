@@ -109,8 +109,7 @@ const sseRegistration = {
     res.json(roomsList)
   },
   getAllRooms2: function (req, res) {
-    logger.info(roomsList2)
-    res.json(roomsList2)
+    res.json(roomsList)
   },
 }
 
