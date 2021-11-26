@@ -64,7 +64,7 @@ db.getAllRooms2(function (queryResult) {
       roomsList2.push(newBuilding)
     }
   })
-  console.log(roomsList)
+  logger.info(roomsList2)
 })
 
 const sseRegistration = {
