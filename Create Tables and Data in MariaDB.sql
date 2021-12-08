@@ -78,14 +78,13 @@ INSERT INTO sensor_history_tracker (sensor_json_data) VALUES
       "id": "F4:G5:11:13",
 	  "occupancy": false
 }
-'),
+')),
 (JSON_COMPACT('
 {
       "id": "F4:G5:11:13",
 	  "occupancy": true
 }
-')
-));
+'));
 
 -- Query to extract Data from Json Doc
 SELECT JSON_EXTRACT(sensor_json_data, '$.occupancy') FROM sensor;
