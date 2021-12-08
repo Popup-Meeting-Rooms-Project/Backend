@@ -53,5 +53,6 @@ jobs:
           VALIDATE_ALL_CODEBASE: true
           DEFAULT_BRANCH: main
           VALIDATE_JAVASCRIPT_STANDARD: false
+          VALIDATE_SQLFLUFF: false
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           FILTER_REGEX_EXCLUDE: .*husky/*

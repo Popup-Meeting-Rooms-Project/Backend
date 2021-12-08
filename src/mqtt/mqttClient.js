@@ -2,11 +2,7 @@ const { sseEvents: sse } = require('../sse/sse')
 const { dbWrite: db } = require('../db/dal')
 const { mqttClientConfig, logger } = require('../config/config')
 const mqtt = require('mqtt')
-const mqttClient = mqtt.connect(
-  mqttClientConfig.url,
-  mqttClientConfig.port,
-  mqttClientConfig.options
-)
+const mqttClient = mqtt.connect(mqttClientConfig.url, mqttClientConfig.options)
 
 mqttClient.on('connect', function () {
   console.log(

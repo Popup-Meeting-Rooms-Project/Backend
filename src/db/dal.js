@@ -72,6 +72,26 @@ const dbRead = {
         conn
           .query('SELECT id, room_name, building_floor FROM room;')
 
+          .then(function (queryResult) {
+            logger.info('db/dal DB reading ' + queryResult)
+            callback(queryResult)
+
+            conn.release()
+          })
+      })
+      .catch((err) => {
+        console.log('db/dal DB reading ' + err)
+        logger.fatal('db/dal DB reading ' + err)
+
+        process.exit()
+      })
+  },
+  getAllRooms2: async function (callback) {
+    await pool
+      .getConnection()
+      .then((conn) => {
+        conn
+          .query('SELECT id, room_name, building, building_floor FROM room;')
 
           .then(function (queryResult) {
             callback(queryResult)
