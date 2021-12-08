@@ -25,6 +25,8 @@ Backend repository consists of 2 parts: **backend server** using Node.js' Expres
 
 It acts as a middleman between IoT sensors and Frontend application receiving, storing and serving data.
 
+See [IoT](https://github.com/Popup-Meeting-Rooms-Project/IoT) & [Frontend](https://github.com/Popup-Meeting-Rooms-Project/Frontend) repositories for the other parts of the project.
+
 Architecture map
 ![architecture](diagram.jpg)
 
@@ -100,9 +102,13 @@ Register
 
 `http://206:189.16.14/register`
 
-All rooms' status
+Latest status of each room
 
 `http://206.189.16.14/getAllRooms`
+
+Same in nested format
+
+`http://206.189.16.14/getAllRoomsTesting`
 
 ## Code quality
 
@@ -125,4 +131,4 @@ Pushed commits and merge requests are linted using [GitHub Super-Linter](https:/
 
 ## License
 
-TBA
+- [MIT License](LICENSE) - Copyright (c) 2021 Popup Meeting Rooms Project
