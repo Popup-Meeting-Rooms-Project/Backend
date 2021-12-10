@@ -6,18 +6,17 @@ on:
 
 jobs:
   build:
-    runs-on: MacOS
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
         with:
           node-version: 12
       - run: npm ci
-      - run: npm test
 
   publish-gpr:
     needs: build
-    runs-on: MacOS
+    runs-on: ubuntu-latest
     permissions:
       packages: write
       contents: read
