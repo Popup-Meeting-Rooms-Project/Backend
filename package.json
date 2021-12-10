@@ -40,5 +40,8 @@
     "markdownlint": "^0.24.0",
     "prettier": "^2.4.1",
     "sql-lint": "^0.0.19"
+  },
+  "publishConfig": {
+    "@ristoxxx:registry": "https://npm.pkg.github.com"
   }
 }
