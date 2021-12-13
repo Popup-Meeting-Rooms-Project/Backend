@@ -1,5 +1,5 @@
 {
-  "name": "backend",
+  "name": "@Popup-Meeting-Rooms-Project/Backend",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -15,7 +15,7 @@
     "winston": "^3.3.3"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "exit 0",
     "lint": "eslint --ext .js src",
     "format": "prettier --write \"**/*.+(js|md)\"",
     "sql": "sql-lint",
@@ -42,7 +42,7 @@
     "sql-lint": "^0.0.19"
   },
   "publishConfig": {
-    "@ristoxxx:registry": "https://npm.pkg.github.com"
+    "@Popup-Meeting-Rooms-Project:registry": "https://npm.pkg.github.com"
   },
   "optionalDependencies": {
     "fsevents": "^2.3.2"
